@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Provider List</title>
 </head>
 <body>
-
+<div layout:fragment="content" class="row">
+    <div class="col-xs-8 col-md-8">
+        <h3>
+            <a href="/createProvider" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Provider</a>
+        </h3>
+        <h2>Provider List</h2>
+        <div class="table-responsive">
+            <table class="table" id="product-table">
+                <thead>
+                <tr>
+                    <th>Provider Name</th>
+                    <th>Product Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="provider : ${providers}">
+                    <td><a th:text="${provider.name}" th:href="@{'/showProvider/' + ${provider.id}}"></a></td>
+                    <td th:text="${provider.productName}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

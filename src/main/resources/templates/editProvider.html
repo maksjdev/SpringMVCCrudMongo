@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Provider</title>
 </head>
 <body>
-
+<div layout:fragment="content" class="row">
+    <div class="col-xs-8 col-md-8">
+        <h3>
+            <a href="/updateProvider" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list"></span> Provider</a>
+        </h3>
+        <h2>Edit Product</h2>
+        <form action="/updateProvider">
+            <div class="form-group">
+                <label for="email">Provider Name:</label>
+                <input type="text" class="form-control" name="Name" th:value="${provider.name}" />
+            </div>
+            <div class="form-group">
+                <label for="email">Product Description</label>
+                <textarea class="form-control" name="prodName" cols="60" rows="3" th:text="${provider.productName}"></textarea>
+            </div>
+            <input type="hidden" name="id" th:value="${provider.id}" />
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

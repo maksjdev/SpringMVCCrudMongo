@@ -20,32 +20,32 @@ public class ProviderController {
 
 
     @RequestMapping("/provider")
-    public String provider(Model model) {
+    public String product(Model model) {
         model.addAttribute("providers", providerRepository.findAll());
         return "provider";
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("/createProvider")
     public String create(Model model) {
-        return "create";
+        return "createProvider";
     }
 
-    @RequestMapping("/save")
+    @RequestMapping("/saveProvider")
     public String save(@RequestParam String Name, @RequestParam String prodName) {
         Provider provider = new Provider();
         provider.setName(Name);
         provider.setProductName(prodName);
         providerRepository.save(provider);
-        return "redirect:/show/" + provider.getId();
+        return "redirect:/showProvider/" + provider.getId();
     }
 
-    @RequestMapping("/show/{id}")
+    @RequestMapping("/showProvider/{id}")
     public String show(@PathVariable String id, Model model) {
         model.addAttribute("provider", providerRepository.findOne(id));
-        return "show";
+        return "showProvider";
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping("/deleteProvider")
     public String delete(@RequestParam String id) {
         Provider provider = providerRepository.findOne(id);
         providerRepository.delete(provider);
@@ -53,18 +53,18 @@ public class ProviderController {
         return "redirect:/provider";
     }
 
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/editProvider/{id}")
     public String edit(@PathVariable String id, Model model) {
         model.addAttribute("provider", providerRepository.findOne(id));
-        return "edit";
+        return "editProvider";
     }
 
-    @RequestMapping("/update")
+    @RequestMapping("/updateProvider")
     public String update(@RequestParam String id, @RequestParam String Name, @RequestParam String prodName) {
         Provider provider = providerRepository.findOne(id);
         provider.setName(Name);
         provider.setProductName(prodName);
         providerRepository.save(provider);
-        return "redirect:/show/" + provider.getId();
+        return "redirect:/showProvider/" + provider.getId();
     }
 }
